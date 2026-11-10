@@ -1,9 +1,12 @@
 name: PR Quiz
-description: A GitHub Action that uses AI to generate a quiz based on a pull request
+description:
+  A GitHub Action that uses AI to generate a quiz based on a pull request
 author: dkamm
+
 branding:
   icon: cpu
   color: blue
+
 inputs:
   github-token:
     description: GitHub token for API access
@@ -15,28 +18,42 @@ inputs:
     description: The ngrok authtoken to use for the server hosting the quiz.
     required: true
   model:
-    description: The model to use for generating the quiz.  It must be a model that supports structured outputs. Defaults to 'o4-mini'.
+    description:
+      The model to use for generating the quiz.  It must be a model that
+      supports structured outputs. Defaults to 'o4-mini'.
     required: false
     default: 'o4-mini'
   lines-changed-threshold:
-    description: The minimum number of lines changed required to create a quiz. This is to prevent quizzes from being created for small pull requests.
+    description:
+      The minimum number of lines changed required to create a quiz. This is to
+      prevent quizzes from being created for small pull requests.
     required: false
     default: '100'
   time-limit-minutes:
-    description: The time limit to complete the quiz in minutes. This prevents the action from running indefinitely.
+    description:
+      The time limit to complete the quiz in minutes. This prevents the action
+      from running indefinitely.
     required: false
     default: '10'
   max-attempts:
-    description: The maximum number of attempts to pass the quiz. A value of 0 means unlimited attempts.
+    description:
+      The maximum number of attempts to pass the quiz. A value of 0 means
+      unlimited attempts.
     required: false
     default: '3'
   exclude-file-patterns:
-    description: A list of file patterns to exclude from the quiz as a JSON-ified string.
+    description:
+      A list of file patterns to exclude from the quiz as a JSON-ified string.
     required: false
-    default: '["**/*-lock.json", "**/*-lock.yaml", "**/*.lock", "**/*.map", "**/*.pb.*", "**/*_pb2.py", "**/*.generated.*", "**/*.auto.*"]'
+    default:
+      '["**/*-lock.json", "**/*-lock.yaml", "**/*.lock", "**/*.map",
+      "**/*.pb.*", "**/*_pb2.py", "**/*.generated.*", "**/*.auto.*"]'
   system-prompt:
-    description: Optional override for the system prompt. Be sure the specify that multiple choice questions must be returned.
+    description:
+      Optional override for the system prompt. Be sure the specify that multiple
+      choice questions must be returned.
     required: false
+
 runs:
   using: composite
   steps:
